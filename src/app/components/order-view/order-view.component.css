@@ -1,0 +1,115 @@
+/* ---- CONTENEDOR GENERAL ---- */
+.orders-container {
+  padding: 40px 20px;
+  animation: fadeIn 0.6s ease;
+}
+
+/* ---- TITULO ---- */
+.section-title {
+  font-weight: 700;
+  color: #444;
+}
+
+/* ---- CARD DE FILTROS ---- */
+.filters-card {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #ececec;
+}
+
+/* Botón limpiar */
+.btn-clear {
+  border-radius: 12px;
+  padding: 8px 20px;
+  transition: 0.2s;
+}
+.btn-clear:hover {
+  background: #e3e3e3;
+}
+
+/* ---- TABLA ---- */
+.orders-table {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.orders-table thead {
+  background: #6c63ff;
+  color: white;
+  font-weight: 600;
+}
+
+.orders-table th, 
+.orders-table td {
+  padding: 14px;
+}
+
+.order-row:hover {
+  background: #f8f8ff;
+  transition: 0.2s;
+}
+
+/* ---- ESTADOS ---- */
+.status-badge {
+  padding: 6px 14px;
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.status-reservado {
+  background: #ffb84d;
+}
+
+.status-entregado {
+  background: #4caf50;
+}
+
+.status-cancelado {
+  background: #e53935;
+}
+
+/* ---- BOTONES DE TABLA ---- */
+.btn-table {
+  border-radius: 10px;
+  padding: 6px 12px;
+  font-weight: 600;
+  border: none;
+  transition: 0.2s;
+  color: white;
+}
+
+.btn-edit {
+  background: #6c63ff;
+}
+.btn-edit:hover {
+  background: #5950d6;
+}
+
+.btn-deliver {
+  background: #4caf50;
+}
+.btn-deliver:hover {
+  background: #3d8c42;
+}
+
+.btn-cancel {
+  background: #d9534f;
+}
+.btn-cancel:hover {
+  background: #c64542;
+}
+
+.btn-table:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ---- ANIMACIÓN ---- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

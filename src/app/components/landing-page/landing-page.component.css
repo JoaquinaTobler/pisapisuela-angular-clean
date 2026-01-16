@@ -1,0 +1,67 @@
+/* 🌈 Fondo con degradado */
+.dashboard-container {
+  background: linear-gradient(135deg, #f0f4ff, #ffffff);
+  min-height: 100vh;
+}
+
+/* 📌 Layout principal */
+.dashboard-content {
+  display: flex;
+  gap: 40px;
+}
+
+/* 🖼 Sidebar estilo dashboard */
+.dashboard-sidebar {
+  flex: 0 0 35%;
+  background: #ffffff80;
+  border-radius: 20px;
+  padding: 20px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.sidebar-image {
+  max-height: 450px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+/* 📌 Área principal */
+.dashboard-main {
+  flex: 1;
+}
+
+/* 🟦 Cards modernas */
+.dash-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 35px 25px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+  height: 100%;
+}
+
+/* ✨ Efecto hover suave */
+.dash-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+/* Ajuste para botones */
+.dash-card button {
+  margin-top: 15px;
+  border-radius: 12px;
+  padding: 10px 0;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .dashboard-content {
+    flex-direction: column;
+  }
+
+  .dashboard-sidebar {
+    display: none;
+  }
+}

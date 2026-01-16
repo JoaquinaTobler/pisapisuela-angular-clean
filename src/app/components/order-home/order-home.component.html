@@ -1,0 +1,38 @@
+<div class="orders-home-container py-5">
+
+  <div class="container">
+
+    <h2 class="fw-bold text-dark text-center mb-4">Gestión de Pedidos</h2>
+    <p class="text-muted text-center mb-5">Accedé rápidamente a las acciones principales</p>
+
+    <div class="row g-4 justify-content-center">
+
+      <!-- Ver Pedidos -->
+      <div class="col-sm-6 col-md-4">
+        <div class="orders-card">
+          <i class="bi bi-cart-check display-4 text-warning mb-3"></i>
+          <h5 class="fw-semibold">Ver Pedidos</h5>
+          <p class="text-muted">Explorá todos los pedidos registrados en el sistema.</p>
+          <button class="btn btn-warning text-white w-100" (click)="navegarA('/orders/view')">
+            Ir
+          </button>
+        </div>
+      </div>
+
+      <!-- Agregar Pedido -->
+      <div class="col-sm-6 col-md-4">
+        <div class="orders-card">
+          <i class="bi bi-plus-circle display-4 text-warning mb-3"></i>
+          <h5 class="fw-semibold">Agregar Pedido</h5>
+          <p class="text-muted">Cargá un nuevo pedido en el sistema.</p>
+          <button class="btn btn-warning text-white w-100" (click)="navegarA('/orders/add')">
+            Agregar
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

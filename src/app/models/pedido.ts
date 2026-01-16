@@ -2,6 +2,8 @@ export interface Pedido {
     id: string;
     cliente: string;
     fechaPedido: Date;
-    seña: number;
+    senia: number;
     estado: string;
+    productos: { productoId: string; cantidad: number }[];
+    comentarios: string
 }

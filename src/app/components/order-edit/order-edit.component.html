@@ -1,0 +1,91 @@
+<div class="form-container d-flex justify-content-center align-items-center">
+  <div class="row form-card p-0 overflow-hidden" style="max-width: 900px; width: 100%;">
+
+    <!-- FORMULARIO -->
+    <div class="col-md-7 p-4 p-md-5">
+
+      <form [formGroup]="pedidoForm" (ngSubmit)="onSubmit()">
+
+        <h2 class="fw-bold text-center mb-2">Editar Pedido</h2>
+        <p class="text-muted text-center mb-4">
+          Modificá los datos del pedido seleccionado.
+        </p>
+
+        <!-- ID -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">ID Pedido</label>
+          <input type="text" class="form-control modern-input" formControlName="id" readonly>
+        </div>
+
+        <!-- CLIENTE -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Cliente</label>
+          <select class="form-control modern-input" formControlName="cliente">
+            <option value="">Seleccioná un cliente...</option>
+            <option *ngFor="let c of clientes" [value]="c.id">
+              {{ c.nombre }} {{ c.apellido }}
+            </option>
+          </select>
+        </div>
+
+        <!-- FECHA -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Fecha del Pedido</label>
+          <input type="date" class="form-control modern-input" formControlName="fechaPedido" readonly>
+        </div>
+
+        <!-- SEÑA -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Seña ($)</label>
+          <input type="number" min="0" class="form-control modern-input" formControlName="senia">
+        </div>
+
+        <!-- ESTADO -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Estado</label>
+          <select class="form-control modern-input" formControlName="estado">
+            <option *ngFor="let est of estados" [value]="est">
+              {{ est }}
+            </option>
+          </select>
+        </div>
+
+        <!-- COMENTARIOS -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Comentarios</label>
+          <textarea class="form-control modern-input" rows="3" formControlName="comentarios"
+            placeholder="Comentarios del pedido">
+  </textarea>
+        </div>
+
+
+        <!-- BOTONES -->
+        <div class="text-center mt-4">
+          <button type="submit" class="btn btn-warning px-4 me-2">Guardar Cambios</button>
+          <button type="button" class="btn btn-secondary px-4" (click)="cancelar()">Cancelar</button>
+        </div>
+
+      </form>
+
+    </div>
+
+    <!-- PANEL LATERAL -->
+    <div
+      class="col-md-5 bg-light p-4 d-flex flex-column justify-content-center align-items-center text-center border-start">
+
+      <img src="https://cdn-icons-png.flaticon.com/512/2331/2331970.png" width="110" class="mb-3 opacity-75">
+
+      <h5 class="fw-bold mb-3">Edición de Pedido</h5>
+
+      <p class="text-muted small mb-3">
+        Acá podés modificar un pedido existente, cambiar su estado o actualizar la seña.
+      </p>
+
+      <div class="alert alert-warning small w-100">
+        Si cambiás el estado a <strong>Entregado</strong>, se generará automáticamente una venta.
+      </div>
+
+    </div>
+
+  </div>
+</div>

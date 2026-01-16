@@ -43,7 +43,9 @@ export class ProductEditComponent implements OnInit {
       idColegio: ['', Validators.required],
       idtipoDeTela: ['', Validators.required],
       cantidadEnStock: ['', Validators.required],
-      precioUnitario: ['', Validators.required]
+      //precioUnitario: ['', Validators.required]
+      precioCompraUnitario: ['', Validators.required],
+      precioVentaUnitario: ['', Validators.required],
     });
   }
 
@@ -66,7 +68,9 @@ export class ProductEditComponent implements OnInit {
           idColegio: producto.idcolegio,
           idtipoDeTela: producto.idtipoDeTela,
           cantidadEnStock: producto.cantidadEnStock,
-          precioUnitario: producto.precioUnitario
+          //precioUnitario: producto.precioUnitario
+          precioCompraUnitario: producto.precioCompraUnitario,
+          precioVentaUnitario: producto.precioVentaUnitario
         });
       } else {
         alert('Producto no encontrado');
@@ -85,7 +89,9 @@ export class ProductEditComponent implements OnInit {
         idcolegio: this.productForm.value.idColegio,
         idtipoDeTela: this.productForm.value.idtipoDeTela,
         cantidadEnStock: this.productForm.value.cantidadEnStock,
-        precioUnitario: this.productForm.value.precioUnitario
+        //precioUnitario: this.productForm.value.precioUnitario
+        precioCompraUnitario: this.productForm.value.precioCompraUnitario,
+        precioVentaUnitario: this.productForm.value.precioVentaUnitario
       };
 
       this.productService.updateProduct(this.productId, productoActualizado).subscribe(() => {

@@ -1,35 +1,129 @@
-<form>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputId">ID</label>
-      <input type="text" class="form-control" id="inputId" placeholder="Ej: PEDR001">
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputCliente">Cliente</label>
-      <input type="text" class="form-control" id="inputCliente" placeholder="Nombre del cliente">
-    </div>
-  </div>
+<div class="form-container d-flex justify-content-center align-items-center">
+  <div class="row form-card p-0 overflow-hidden" style="max-width: 900px; width: 100%;">
 
-  <div class="form-row">
-    <div class="form-group col-md-4">
-      <label for="inputFechaPedido">Fecha de Pedido</label>
-      <input type="date" class="form-control" id="inputFechaPedido">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="inputSena">Seña ($)</label>
-      <input type="number" class="form-control" id="inputSena" placeholder="Monto de la seña" step="0.01" min="0">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="inputEstado">Estado</label>
-      <select id="inputEstado" class="form-control">
-        <option selected>Selecciona...</option>
-        <option>Pendiente</option>
-        <option>En proceso</option>
-        <option>Completado</option>
-        <option>Cancelado</option>
-      </select>
-    </div>
-  </div>
+    <!-- FORMULARIO -->
+    <div class="col-md-7 p-4 p-md-5">
 
-  <button type="submit" class="btn btn-primary">Guardar Pedido</button>
-</form>
+      <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+
+        <h2 class="fw-bold text-center mb-2">Nuevo Pedido</h2>
+        <p class="text-muted text-center mb-4">
+          Completá los datos del pedido y seleccioná los productos correspondientes.
+        </p>
+
+        <!-- ID -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">ID Pedido</label>
+          <input type="text" class="form-control modern-input" formControlName="id" readonly>
+        </div>
+
+        <!-- CLIENTE -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Cliente</label>
+          <select class="form-control modern-input" formControlName="cliente">
+            <option value="">Seleccioná un cliente...</option>
+            <option *ngFor="let c of clientes" [value]="c.id">
+              {{ c.nombre }} {{ c.apellido }}
+            </option>
+          </select>
+        </div>
+
+        <!-- FECHA -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Fecha del Pedido</label>
+          <input type="date" class="form-control modern-input" formControlName="fechaPedido" readonly>
+        </div>
+
+        <!-- SEÑA -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Seña ($)</label>
+          <input type="number" min="0" class="form-control modern-input" formControlName="senia">
+        </div>
+
+        <!-- ESTADO -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Estado</label>
+          <select class="form-control modern-input" formControlName="estado">
+            <option value="Reservado">Reservado</option>
+            <option value="Entregado">Entregado</option>
+          </select>
+        </div>
+
+        <!-- PRODUCTOS -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Productos seleccionados</label>
+
+          <!-- Sin productos -->
+          <div *ngIf="productosForm.controls.length === 0" class="text-muted small">
+            No hay productos seleccionados.
+          </div>
+
+          <!-- Chips -->
+          <div class="selected-products-wrapper" *ngIf="productosForm.controls.length > 0">
+
+            <div *ngFor="let p of productosForm.controls; let i = index" class="product-chip">
+
+              <div class="chip-info">
+                <span class="chip-title">
+                  {{ getNombreProducto(p.get('productoId')?.value) }}
+                </span>
+                <span class="chip-qty">
+                  <i class="bi bi-box-seam"></i> x{{ p.get('cantidad')?.value }}
+                </span>
+              </div>
+
+              <button type="button" class="chip-remove-btn" (click)="eliminarProducto(i)">
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </div>
+
+          </div>
+
+          <button type="button" class="btn btn-primary mt-3 px-3" (click)="irASeleccionarProductos()">
+            Agregar Productos
+          </button>
+        </div>
+
+        <!-- COMENTARIOS GENERALES -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">
+            <i class="bi bi-chat-left-text me-1"></i>
+            Comentarios del Pedido
+          </label>
+          <textarea class="form-control modern-input" formControlName="comentarios" rows="3"
+            placeholder="Escribí aquí cualquier observación, comentario o detalle especial sobre el pedido..."></textarea>
+          <div class="form-text small">
+            Ej: "Producto personalizado", "Entregar antes de las 14hs", "Incluir tarjeta de regalo", etc.
+          </div>
+        </div>
+
+        <!-- BOTONES -->
+        <div class="text-center mt-4">
+          <button type="submit" class="btn btn-success px-4 me-2">Guardar</button>
+          <button type="button" class="btn btn-secondary px-4" (click)="cancelar()">Cancelar</button>
+        </div>
+
+      </form>
+
+    </div>
+
+    <!-- PANEL LATERAL -->
+    <div
+      class="col-md-5 bg-light p-4 d-flex flex-column justify-content-center align-items-center text-center border-start">
+
+      <img src="https://cdn-icons-png.flaticon.com/512/2331/2331970.png" width="110" class="mb-3 opacity-75">
+
+      <h5 class="fw-bold mb-3">Gestión de Pedidos</h5>
+
+      <p class="text-muted small mb-3">
+        Registrá un nuevo pedido, seleccioná los productos desde el catálogo y definí su estado.
+      </p>
+
+      <div class="alert alert-info small w-100">
+        Los productos se seleccionan desde la pantalla especial tipo <strong>carrito</strong>.
+      </div>
+
+    </div>
+
+  </div>
+</div>

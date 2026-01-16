@@ -1,9 +1,47 @@
-.card {
-  border-radius: 1rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* Fondo general igual al de clientes */
+.products-home-container {
+  background: linear-gradient(135deg, #f0f4ff, #ffffff);
+  min-height: 100vh;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+/* Tarjetas estilo moderno */
+.products-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 35px 25px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+  height: 100%;
+  border: none !important;
+
+  /* Para alinear los botones abajo */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Contenedor del botón → lo empuja abajo */
+.products-card .action-button {
+  margin-top: auto;
+}
+
+/* Hover suave */
+.products-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+/* Botones */
+.products-card button,
+.products-card a {
+  margin-top: 15px;
+  border-radius: 12px;
+  padding: 10px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .products-card {
+    padding: 25px 20px;
+  }
 }

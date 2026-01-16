@@ -1,0 +1,90 @@
+/* ---- CONTENEDOR GENERAL ---- */
+.clients-container {
+  padding: 40px 20px;
+  animation: fadeIn 0.6s ease;
+}
+
+/* ---- TITULO ---- */
+.section-title {
+  font-weight: 700;
+  color: #444;
+}
+
+/* ---- CARD DEL CLIENTE ---- */
+.client-card {
+  background: white;
+  border-radius: 20px;
+  padding: 0;
+  transition: 0.25s ease;
+  border: 1px solid #ececec;
+}
+
+.client-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+/* ---- AVATAR ---- */
+.avatar-wrapper {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+  border: 3px solid #6c63ff33; /* borde suave con el color principal */
+}
+
+.avatar-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---- NOMBRE ---- */
+.client-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* ---- DATOS ---- */
+.client-phone {
+  margin: 5px 0;
+  font-size: 0.95rem;
+}
+
+.client-id {
+  font-size: 0.85rem;
+  color: #999;
+}
+
+/* ---- BOTONES ---- */
+.btn-client {
+  border-radius: 12px;
+  padding: 6px 14px;
+  font-weight: 600;
+  border: none;
+  transition: 0.2s ease;
+  font-size: 0.9rem;
+  color: white;
+}
+
+.btn-edit {
+  background: #6c63ff;
+}
+.btn-edit:hover {
+  background: #5950d6;
+}
+
+.btn-delete {
+  background: #e74c3c;
+}
+.btn-delete:hover {
+  background: #c0392b;
+}
+
+/* ---- ANIMACIÓN ---- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

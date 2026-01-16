@@ -1,0 +1,36 @@
+/* Contenedor general con mismo fondo que dashboard si querés */
+.clients-home-container {
+  background: linear-gradient(135deg, #f0f4ff, #ffffff);
+  min-height: 100vh;
+}
+
+/* Cards estilo moderno iguales a las del dashboard */
+.clients-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 35px 25px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+  height: 100%;
+}
+
+/* Hover suave */
+.clients-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+/* Botones redondeados */
+.clients-card button {
+  margin-top: 15px;
+  border-radius: 12px;
+  padding: 10px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .clients-card {
+    padding: 25px 20px;
+  }
+}

@@ -1,0 +1,52 @@
+<div class="upload-container">
+  <div class="upload-card">
+    <h3 class="title">📦 Cargar productos desde Excel</h3>
+
+    <div class="actions">
+      <label class="file-label">
+        <input type="file" accept=".xlsx, .xls" (change)="onFileChange($event)" hidden />
+        <span>📁 Seleccionar archivo Excel</span>
+      </label>
+
+      <button
+        class="btn-main"
+        (click)="procesarProductosDesdeExcel()"
+        [disabled]="productos.length === 0 || cargando"
+      >
+        💾 Procesar y guardar productos
+      </button>
+
+      <button class="btn-secondary" (click)="descargarPlantilla()" [disabled]="cargando">
+        📄 Descargar plantilla
+      </button>
+    </div>
+
+    <div *ngIf="mensaje && !cargando" class="message">
+      {{ mensaje }}
+    </div>
+
+    <!-- 🔄 Spinner de carga -->
+    <div *ngIf="cargando" class="spinner-container">
+      <div class="spinner"></div>
+      <p class="loading-text">Procesando productos...</p>
+    </div>
+  </div>
+
+  <div *ngIf="productos.length > 0 && !cargando" class="preview">
+    <h5 class="preview-title">👁 Vista previa del Excel</h5>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover align-middle">
+        <thead class="table-light">
+          <tr>
+            <th *ngFor="let key of Object.keys(productos[0])">{{ key }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let producto of productos">
+            <td *ngFor="let key of Object.keys(producto)">{{ producto[key] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

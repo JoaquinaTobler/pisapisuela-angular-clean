@@ -1,0 +1,112 @@
+<div class="orders-container">
+  <h2 class="section-title text-center mb-4">
+    📦 Listado de Pedidos
+  </h2>
+
+  <!-- Filtros -->
+  <div class="filters-card shadow-sm p-3 mb-4">
+    <div class="row g-3">
+
+      <div class="col-md-3">
+        <label class="form-label">Estado</label>
+        <select class="form-select modern-input" [(ngModel)]="filtros.estado" (change)="aplicarFiltro()">
+          <option value="">Todos</option>
+          <option>Reservado</option>
+          <option>Entregado</option>
+          <option>Cancelado</option>
+        </select>
+      </div>
+
+      <div class="col-md-3">
+        <label class="form-label">Cliente</label>
+        <select class="form-select modern-input" [(ngModel)]="filtros.cliente" (change)="aplicarFiltro()">
+          <option value="">Todos</option>
+          <option *ngFor="let cliente of clientes" [value]="cliente.id">
+            {{ cliente.nombre }} {{ cliente.apellido }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-md-3">
+        <label class="form-label">Colegio</label>
+        <select class="form-select modern-input" [(ngModel)]="filtros.colegio" (change)="aplicarFiltro()">
+          <option value="">Todos los Colegios</option>
+          <option *ngFor="let col of colegios" [value]="col.id">
+            {{ col.nombre }}
+          </option>
+        </select>
+      </div>
+      
+      <div class="col-md-3">
+        <label class="form-label">Desde</label>
+        <input type="date" class="form-control modern-input" [(ngModel)]="filtros.fechaDesde" (change)="aplicarFiltro()">
+      </div>
+
+      <div class="col-md-3">
+        <label class="form-label">Hasta</label>
+        <input type="date" class="form-control modern-input" [(ngModel)]="filtros.fechaHasta" (change)="aplicarFiltro()">
+      </div>
+    </div>
+
+    <div class="text-end mt-3">
+      <button class="btn btn-outline-secondary btn-clear" (click)="limpiarFiltros()">
+        Limpiar filtros
+      </button>
+    </div>
+  </div>
+
+  <!-- Tabla -->
+  <div class="table-responsive">
+    <table class="table orders-table text-center align-middle">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Cliente</th>
+          <th>Fecha</th>
+          <th>Seña</th>
+          <th>Comentarios</th>
+          <th>Estado</th> 
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let pedido of pedidosFiltrados" class="order-row">
+          <td>{{ pedido.id }}</td>
+          <td>{{ nombreCliente(pedido.cliente) }}</td>
+          <td>{{ pedido.fechaPedido }}</td>
+          <td>${{ pedido.senia }}</td>
+          <td>{{ pedido.comentarios }}</td>
+
+          <td>
+            <span [class]="
+              'status-badge ' +
+              (pedido.estado === 'Reservado' ? 'status-reservado' :
+               pedido.estado === 'Entregado' ? 'status-entregado' : 
+               'status-cancelado')">
+              {{ pedido.estado }}
+            </span>
+          </td>
+
+          <td>
+            <button class="btn btn-table btn-edit me-1" (click)="editarPedido(pedido.id)">
+              ✏️ Editar
+            </button>
+
+            <button class="btn btn-table btn-deliver me-1"
+                    (click)="entregarPedido(pedido.id)"
+                    [disabled]="pedido.estado === 'Entregado' || pedido.estado === 'Cancelado'">
+              📦 Entregar
+            </button>
+
+            <button class="btn btn-table btn-cancel"
+                    (click)="cancelarPedido(pedido.id)"
+                    [disabled]="pedido.estado === 'Cancelado' || pedido.estado === 'Entregado'">
+              ❌ Cancelar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

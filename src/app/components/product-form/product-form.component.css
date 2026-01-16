@@ -1,0 +1,60 @@
+/* Fondo con degradado */
+.form-container {
+  background: linear-gradient(135deg, #f0f4ff, #ffffff);
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+/* Card principal */
+.form-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 700px;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  animation: fadeIn 0.6s ease;
+}
+
+/* Inputs modernos */
+.modern-input {
+  border-radius: 14px;
+  padding: 10px 12px;
+  border: 1px solid #dcdcdc;
+  transition: all 0.2s ease-in-out;
+}
+
+.modern-input:focus {
+  border-color: #6c63ff;
+  box-shadow: 0 0 6px rgba(108, 99, 255, 0.35);
+}
+
+/* Etiquetas */
+.form-label {
+  font-size: 0.9rem;
+}
+
+/* Botones */
+button {
+  border-radius: 12px !important;
+  font-weight: 600;
+  padding: 10px 25px !important;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive mejoras */
+@media (max-width: 576px) {
+  .form-card {
+    padding: 20px;
+  }
+
+  button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}

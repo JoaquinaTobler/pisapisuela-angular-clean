@@ -1,76 +1,128 @@
-<form id="ventaForm" novalidate>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputId">ID de Venta*</label>
-      <input type="text" class="form-control" id="inputId" placeholder="Ej: VTA-001" required>
-      <div class="invalid-feedback">Por favor ingrese un ID válido</div>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputCliente">Cliente*</label>
-      <input type="text" class="form-control" id="inputCliente" placeholder="Nombre completo del cliente" required>
-      <div class="invalid-feedback">Por favor ingrese el nombre del cliente</div>
-    </div>
-  </div>
+<div class="form-container">
+  <div class="container py-4">
 
-  <div class="form-row">
-    <div class="form-group col-md-4">
-      <label for="inputFormaPago">Forma de Pago*</label>
-      <select id="inputFormaPago" class="form-control" required>
-        <option value="" selected disabled>Seleccione...</option>
-        <option value="Efectivo">Efectivo</option>
-        <option value="Tarjeta Débito">Tarjeta Débito</option>
-        <option value="Tarjeta Crédito">Tarjeta Crédito</option>
-        <option value="Transferencia">Transferencia</option>
-        <option value="Mercado Pago">Mercado Pago</option>
-      </select>
-      <div class="invalid-feedback">Seleccione una forma de pago</div>
+    <h2 class="text-center mb-4 fw-bold">📊 Ventas del {{ mesActual }}/{{ anioActual }}</h2>
+
+    <!-- 🔹 Filtros -->
+    <div class="d-flex justify-content-center mb-4 flex-wrap gap-3">
+      <input type="number" [(ngModel)]="mesActual" (change)="cambiarPeriodo()" class="form-control modern-input w-auto"
+        min="1" max="12" placeholder="Mes">
+
+      <input type="number" [(ngModel)]="anioActual" (change)="cambiarPeriodo()" class="form-control modern-input w-auto"
+        min="2020" max="2100" placeholder="Año">
+
+      <button class="btn btn-success" (click)="exportarPDF()">
+        <i class="bi bi-file-earmark-pdf"></i> Exportar PDF
+      </button>
+
+      <button class="btn btn-warning text-white" (click)="exportarExcel()">
+        <i class="bi bi-file-earmark-spreadsheet"></i> Exportar Excel
+      </button>
+
     </div>
-    <div class="form-group col-md-4">
-      <label for="inputFechaVenta">Fecha de Venta*</label>
-      <input type="date" class="form-control" id="inputFechaVenta" required>
-      <div class="invalid-feedback">Seleccione una fecha válida</div>
-    </div>
-    <div class="form-group col-md-4">
-      <label for="inputTotalVenta">Total Venta ($)*</label>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text">$</span>
+
+    <!-- 🔹 Estructura principal -->
+    <div class="row g-4">
+
+      <!-- 🟩 Resumen mensual -->
+      <div class="col-lg-4 col-md-12">
+        <div class="form-card text-center">
+
+          <h5 class="text-success mb-3 fw-bold">Resumen mensual</h5>
+
+          <canvas #salesChart width="280" height="280"></canvas>
+
+          <div class="mt-3 text-start">
+            <p><strong>Total de pedidos:</strong> {{ totalPedidos }}</p>
+            <p><strong>Ventas concretadas:</strong> {{ ventasConcretadas }}</p>
+            <p><strong>Porcentaje de éxito:</strong> {{ porcentajeVentas }}%</p>
+          </div>
+
         </div>
-        <input type="number" class="form-control" id="inputTotalVenta" placeholder="0.00" step="0.01" min="0" required>
       </div>
-      <div class="invalid-feedback">Ingrese un monto válido</div>
+
+      <!-- 🟦 Lista de ventas -->
+      <div class="col-lg-8 col-md-12">
+
+        <div *ngIf="ventas.length === 0" class="form-card text-center text-muted py-5">
+          <i class="bi bi-bag-x fs-2"></i>
+          <p class="mt-2">No hay ventas registradas para este período.</p>
+        </div>
+
+        <div class="row">
+          <div *ngFor="let venta of ventas" class="col-md-6 mb-4">
+
+            <div class="form-card venta-card pointer" (click)="abrirDetalle(venta)"
+              style="padding: 0; overflow: hidden;">
+
+              <div class="p-3 text-white" style="background: #28a745;">
+                <strong>{{ venta.id }}</strong> — {{ getNombreCliente(venta.cliente) }}
+              </div>
+
+              <div class="p-3">
+                <p><strong>Fecha:</strong> {{ venta.fechaPedido | date }}</p>
+                <p><strong>Total:</strong> {{ getTotalPedido(venta) | currency:'ARS':'symbol' }}</p>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
     </div>
-  </div>
 
-  <div class="form-group">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="confirmacion" required>
-      <label class="form-check-label" for="confirmacion">
-        Confirmo que los datos de la venta son correctos
-      </label>
-      <div class="invalid-feedback">Debe confirmar los datos</div>
+    <!-- 🔹 Modal Detalle de Venta -->
+    <div class="modal fade show" tabindex="-1" [ngStyle]="{'display': ventaSeleccionada ? 'block' : 'none'}"
+      *ngIf="ventaSeleccionada" style="background: rgba(0,0,0,0.4);">
+
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content form-card">
+
+          <div class="modal-header text-white" style="background: #28a745; border-radius: 20px 20px 0 0;">
+            <h5 class="modal-title">Detalle de {{ ventaSeleccionada.id }}</h5>
+            <button type="button" class="btn-close" (click)="cerrarDetalle()"></button>
+          </div>
+
+          <div class="modal-body">
+
+            <p><strong>Cliente:</strong> {{ getNombreCliente(ventaSeleccionada.cliente) }}</p>
+            <p><strong>Fecha:</strong> {{ ventaSeleccionada.fechaPedido | date }}</p>
+
+            <!-- 🔹 Detalle del pedido asociado -->
+            <div *ngIf="pedidoDetalle">
+
+              <p class="text-muted small">
+                Pedido asociado: <strong>{{ pedidoDetalle.id }}</strong>
+              </p>
+
+
+              <ul class="list-group mb-3">
+                <li *ngFor="let item of pedidoDetalle.productos"
+                  class="list-group-item d-flex justify-content-between align-items-center cart-item-card">
+                  <span>{{ item.cantidad }} × {{ getNombreProducto(item.productoId) }}</span>
+                  <span class="fw-bold">
+                    {{ (getPrecioProducto(item.productoId) * item.cantidad) | currency:'ARS':'symbol' }}
+                  </span>
+                </li>
+              </ul>
+
+              <p class="fw-bold text-end fs-5 text-primary">
+                Total:
+                {{ getTotalPedido(pedidoDetalle) | currency:'ARS':'symbol' }}
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-secondary" (click)="cerrarDetalle()">Cerrar</button>
+          </div>
+
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="d-flex justify-content-between">
-    <button type="reset" class="btn btn-secondary">Limpiar</button>
-    <button type="submit" class="btn btn-success">Registrar Venta</button>
   </div>
-</form>
-
-<script>
-// Validación del formulario
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    var form = document.getElementById('ventaForm');
-    form.addEventListener('submit', function(event) {
-      if (form.checkValidity() === false) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-      form.classList.add('was-validated');
-    }, false);
-  }, false);
-})();
-</script>
+</div>

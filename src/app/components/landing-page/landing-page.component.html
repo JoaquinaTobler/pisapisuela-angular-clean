@@ -1,31 +1,66 @@
-<section class="bg-light text-center py-5">
-    <div class="container">
-      <h2 class="mb-3">Calidad y Confianza para tu Escuela</h2>
-      <p class="mb-4">Uniformes escolares para todos los niveles: jardín, primaria y secundaria.</p>
-      <img src="https://images.pexels.com/photos/32026196/pexels-photo-32026196.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"style="max-height: 400px;">
+<div class="dashboard-container py-5">
+
+  <div class="dashboard-content container">
+
+    <!-- Sidebar con imagen -->
+    <div class="dashboard-sidebar d-none d-lg-flex justify-content-center align-items-center">
+      <img 
+        src="https://images.pexels.com/photos/32026196/pexels-photo-32026196.png?auto=compress&cs=tinysrgb&w=800"
+        alt="Uniformes escolares"
+        class="img-fluid sidebar-image"
+      />
     </div>
-  </section>
-  
-  <section class="container py-5">
-    <div class="row text-center">
-      <div class="col-md-4">
-        <h5>Variedad de Talles</h5>
-        <p>Desde los más pequeños hasta adolescentes.</p>
-      </div>
-      <div class="col-md-4">
-        <h5>Materiales Resistentes</h5>
-        <p>Diseñados para durar todo el año escolar.</p>
-      </div>
-      <div class="col-md-4">
-        <h5>Personalización</h5>
-        <p>Agregá logos o bordados del colegio.</p>
+
+    <!-- Panel principal -->
+    <div class="dashboard-main">
+
+      <h2 class="fw-bold text-dark text-center mb-4">Panel de Gestión</h2>
+      <p class="text-muted text-center mb-5">Accedé rápidamente a las áreas principales del sistema</p>
+
+      <div class="row g-4 justify-content-center">
+
+        <!-- Productos -->
+        <div class="col-sm-6 col-md-6">
+          <div class="dash-card">
+            <i class="bi bi-box-seam display-4 text-primary mb-3"></i>
+            <h5 class="fw-semibold">Productos</h5>
+            <p class="text-muted">Gestioná el inventario de uniformes.</p>
+            <button class="btn btn-primary w-100" (click)="navegarA('/products/home')">Entrar</button>
+          </div>
+        </div>
+
+        <!-- Clientes -->
+        <div class="col-sm-6 col-md-6">
+          <div class="dash-card">
+            <i class="bi bi-people-fill display-4 text-success mb-3"></i>
+            <h5 class="fw-semibold">Clientes</h5>
+            <p class="text-muted">Consultá y registrá nuevos clientes.</p>
+            <button class="btn btn-success w-100" (click)="navegarA('/clients/home')">Entrar</button>
+          </div>
+        </div>
+
+        <!-- Pedidos -->
+        <div class="col-sm-6 col-md-6">
+          <div class="dash-card">
+            <i class="bi bi-cart-check display-4 text-warning mb-3"></i>
+            <h5 class="fw-semibold">Pedidos</h5>
+            <p class="text-muted">Revisá y organizá los pedidos.</p>
+            <button class="btn btn-warning text-white w-100" (click)="navegarA('/orders/home')">Entrar</button>
+          </div>
+        </div>
+
+        <!-- Ventas -->
+        <div class="col-sm-6 col-md-6">
+          <div class="dash-card">
+            <i class="bi bi-cash-stack display-4 text-danger mb-3"></i>
+            <h5 class="fw-semibold">Ventas</h5>
+            <p class="text-muted">Accedé al historial de ventas.</p>
+            <button class="btn btn-danger w-100" (click)="navegarA('/ventas/home')">Entrar</button>
+          </div>
+        </div>
+
       </div>
     </div>
-  </section>
-  
-  <section class="bg-info text-center text-white py-5">
-    <div class="container">
-      <h3>¿Querés hacer un pedido mayorista o personalizado?</h3>
-      <a href="#" class="btn btn-light mt-3">Contactanos</a>
-    </div>
-  </section>
+
+  </div>
+</div>

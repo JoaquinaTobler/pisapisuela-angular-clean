@@ -1,6 +1,58 @@
-.custom-header {
-  background-color: #62d37f; 
+/* NAVBAR MODERNA */
+.modern-navbar {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
 }
- 
 
- 
+
+/* Marca */
+.brand-icon {
+  color: #6c63ff;
+}
+
+/* Botón Menú */
+.modern-nav-btn {
+  border-radius: 12px;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid #e5e5e5 !important;
+  background: #ffffff;
+}
+
+.modern-nav-btn:hover {
+  background: #6c63ff;
+  color: white !important;
+  box-shadow: 0 4px 14px rgba(108, 99, 255, 0.25);
+}
+
+.modern-nav-btn i {
+  transition: 0.2s;
+}
+
+.modern-nav-btn:hover i {
+  color: white !important;
+}
+
+/* Dropdown */
+.modern-dropdown {
+  border-radius: 14px;
+  padding: 8px 0;
+}
+
+.modern-dropdown-item {
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+
+.modern-dropdown-item:hover {
+  background-color: #f4f4ff;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .modern-nav-btn {
+    width: 100%;
+    text-align: left;
+  }
+}

@@ -1,68 +1,93 @@
-<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
-  <div class="border rounded shadow p-4 bg-white" style="width: 100%; max-width: 600px;">
+<div class="form-container d-flex justify-content-center align-items-center">
+  <div class="form-card p-4 p-md-5">
+
     <form (ngSubmit)="onSubmit()" [formGroup]="productForm" novalidate>
-      <h4 class="mb-4 text-center">Editar Producto</h4>
-      
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputNumero">Número / ID</label>
-          <input type="text" class="form-control" id="inputNumero" formControlName="id">
+
+      <h2 class="fw-bold text-center mb-4">Editar Producto</h2>
+      <p class="text-muted text-center mb-4">
+        Modificá los datos del producto y guardá los cambios.
+      </p>
+
+      <!-- FILA 1 -->
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Número / ID</label>
+          <input type="text" class="form-control modern-input" formControlName="id" readonly>
         </div>
-        <div class="form-group col-md-6">
-          <label for="inputTipoProducto">Tipo de Producto</label>
-          <select id="inputTipoProducto" class="form-control" formControlName="idtipoDeProducto">
-            <option selected>Selecciona...</option>
+
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Tipo de Producto</label>
+          <select class="form-control modern-input" formControlName="idtipoDeProducto">
+            <option value="">Seleccioná...</option>
             <option *ngFor="let tipo of tiposDeProducto" [value]="tipo.id">{{ tipo.nombre }}</option>
           </select>
         </div>
       </div>
 
-      <div class="form-row">
-        <div class="form-group col-md-4">
-          <label for="inputTalle">Talle</label>
-          <select id="inputTalle" class="form-control" formControlName="idTalle">
-            <option selected>Selecciona...</option>
+      <!-- FILA 2 -->
+      <div class="row g-3 mt-1">
+
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">Talle</label>
+          <select class="form-control modern-input" formControlName="idTalle">
+            <option value="">Seleccioná...</option>
             <option *ngFor="let talle of talles" [value]="talle.id">{{ talle.nombre }}</option>
           </select>
         </div>
-        <div class="form-group col-md-4">
-          <label for="inputColor">Color</label>
-          <select id="inputColor" class="form-control" formControlName="idColor">
-            <option selected>Selecciona...</option>
+
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">Color</label>
+          <select class="form-control modern-input" formControlName="idColor">
+            <option value="">Seleccioná...</option>
             <option *ngFor="let color of colores" [value]="color.id">{{ color.nombre }}</option>
           </select>
         </div>
-        <div class="form-group col-md-4">
-          <label for="inputColegio">Colegio</label>
-          <select id="inputColegio" class="form-control" formControlName="idColegio">
-            <option selected>Selecciona...</option>
+
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">Colegio</label>
+          <select class="form-control modern-input" formControlName="idColegio">
+            <option value="">Seleccioná...</option>
             <option *ngFor="let colegio of colegios" [value]="colegio.id">{{ colegio.nombre }}</option>
           </select>
         </div>
+
       </div>
 
-      <div class="form-row">
-        <div class="form-group col-md-4">
-          <label for="inputTela">Tipo de Tela</label>
-          <select id="inputTela" class="form-control" formControlName="idtipoDeTela">
-            <option selected>Selecciona...</option>
+      <!-- FILA 3 -->
+      <div class="row g-3 mt-1">
+
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">Tipo de Tela</label>
+          <select class="form-control modern-input" formControlName="idtipoDeTela">
+            <option value="">Seleccioná...</option>
             <option *ngFor="let tela of tiposDeTela" [value]="tela.id">{{ tela.nombre }}</option>
           </select>
         </div>
-        <div class="form-group col-md-4">
-          <label for="inputStock">Cantidad en Stock</label>
-          <input type="number" class="form-control" id="inputStock" formControlName="cantidadEnStock" min="0">
+
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">Stock</label>
+          <input type="number" min="0" class="form-control modern-input" formControlName="cantidadEnStock">
         </div>
-        <div class="form-group col-md-4">
-          <label for="inputPrecio">Precio Unitario</label>
-          <input type="number" class="form-control" id="inputPrecio" formControlName="precioUnitario" step="0.01" min="0">
+
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">Precio Compra (U)</label>
+          <input type="number" step="0.01" min="0" class="form-control modern-input" formControlName="precioCompraUnitario">
         </div>
+
+        <div class="col-md-4 mt-3">
+          <label class="form-label fw-semibold">Precio Venta (U)</label>
+          <input type="number" step="0.01" min="0" class="form-control modern-input" formControlName="precioVentaUnitario">
+        </div>
+
       </div>
 
+      <!-- BOTONES -->
       <div class="text-center mt-4">
-        <button type="submit" class="btn btn-success me-2">Guardar</button>
-        <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+        <button type="submit" class="btn btn-success px-4 me-2">Guardar</button>
+        <button type="button" class="btn btn-secondary px-4" (click)="cancelar()">Cancelar</button>
       </div>
+
     </form>
+
   </div>
 </div>

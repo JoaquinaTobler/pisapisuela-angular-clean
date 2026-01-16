@@ -18,7 +18,15 @@ import { ProductViewComponent } from './product-view/product-view.component';
 import { ProductEditComponent } from './components/product-edit/product-edit.component';
 import { ProductsHomeComponent } from './components/products-home/products-home.component';
 import { FormsModule } from '@angular/forms';
-
+import { ClientHomeComponent } from './components/client-home/client-home.component';
+import { ClientViewComponent } from './components/client-view/client-view.component';
+import { ClientEditComponent } from './components/client-edit/client-edit.component';
+import { OrderViewComponent } from './components/order-view/order-view.component';
+import { OrderHomeComponent } from './components/order-home/order-home.component';
+import { OrderEditComponent } from './components/order-edit/order-edit.component';
+import { PedidoProductosComponent } from './components/pedido-productos/pedido-productos.component';
+import { PedidoAddComponent } from './pedido-add/pedido-add.component';
+import { UploadExcelComponent } from './components/upload-excel/upload-excel.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +41,15 @@ import { FormsModule } from '@angular/forms';
     ProductViewComponent,
     ProductEditComponent,
     ProductsHomeComponent,
-    
+    ClientHomeComponent,
+    ClientViewComponent,
+    ClientEditComponent,
+    OrderViewComponent,
+    OrderHomeComponent,
+    OrderEditComponent,
+    PedidoProductosComponent,
+    PedidoAddComponent,
+    UploadExcelComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +58,6 @@ import { FormsModule } from '@angular/forms';
     MatDialogModule,
     FormsModule,
     HttpClientModule
-    
   ],
   providers: [],
   bootstrap: [AppComponent]

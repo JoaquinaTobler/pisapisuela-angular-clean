@@ -1,103 +1,220 @@
 {
   "clientes": [
     {
-      "id": "cli001",
-      "nombre": "Lucía",
-      "apellido": "Martínez",
-      "celular": "1123456789"
-    },
-    {
-      "id": "cli002",
-      "nombre": "Mateo",
-      "apellido": "González",
-      "celular": "1134567890"
-    },
-    {
       "id": "cli003",
       "nombre": "Sofía",
       "apellido": "López",
       "celular": "1145678901"
+    },
+    {
+      "id": "cli005",
+      "nombre": "Rosario",
+      "apellido": "Reinos",
+      "celular": "22358966547"
+    },
+    {
+      "id": "cli006",
+      "nombre": "Tomas",
+      "apellido": "Roberto",
+      "celular": "22358964556"
+    },
+    {
+      "id": "cli007",
+      "nombre": "Test",
+      "apellido": "Test",
+      "celular": "2238574112"
+    },
+    {
+      "id": "cli008",
+      "nombre": "Joaquina",
+      "apellido": "Mendez",
+      "celular": "2234567882"
+    },
+    {
+      "id": "cli009",
+      "nombre": "Juan",
+      "apellido": "Mariani",
+      "celular": "223584996"
+    },
+    {
+      "id": "cli009",
+      "nombre": "Juan",
+      "apellido": "Mariani",
+      "celular": "223584996"
     }
   ],
   "pedidos": [
     {
       "id": "ped001",
-      "cliente": "cli001",
-      "fechaPedido": "2025-06-10",
-      "seña": 1000,
-      "estado": "pendiente"
+      "cliente": "cli003",
+      "fechaPedido": "2025-12-10",
+      "senia": 200,
+      "estado": "Cancelado",
+      "productos": [
+        {
+          "productoId": "prod001",
+          "cantidad": 1
+        }
+      ],
+      "comentarios": "Necesito un barbijo de color azul talle XS"
     },
     {
       "id": "ped002",
-      "cliente": "cli002",
-      "fechaPedido": "2025-06-11",
-      "seña": 2000,
-      "estado": "confirmado"
+      "cliente": "cli003",
+      "fechaPedido": "2025-12-16",
+      "senia": 800,
+      "estado": "Cancelado",
+      "productos": [
+        {
+          "productoId": "prod002",
+          "cantidad": 1
+        }
+      ],
+      "comentarios": ""
     },
     {
       "id": "ped003",
-      "cliente": "cli003",
-      "fechaPedido": "2025-06-12",
-      "seña": 1500,
-      "estado": "entregado"
-    }
-  ],
-  "ventas": [
-    {
-      "id": "ven001",
-      "cliente": "cli001",
-      "formaDePago": "efectivo",
-      "fechaVenta": "2025-06-14",
-      "totalVenta": 9000
+      "cliente": "cli006",
+      "fechaPedido": "2025-12-16",
+      "senia": 0,
+      "estado": "Cancelado",
+      "productos": [
+        {
+          "productoId": "prod003",
+          "cantidad": 1
+        }
+      ],
+      "comentarios": "+ 1 par de medias rojas"
     },
     {
-      "id": "ven002",
-      "cliente": "cli002",
-      "formaDePago": "tarjeta",
-      "fechaVenta": "2025-06-15",
-      "totalVenta": 7800
+      "id": "ped004",
+      "cliente": "cli005",
+      "fechaPedido": "2026-01-15",
+      "senia": 200,
+      "estado": "Entregado",
+      "productos": [
+        {
+          "productoId": "prod001",
+          "cantidad": 1
+        }
+      ],
+      "comentarios": "Test"
+    },
+    {
+      "id": "ped005",
+      "cliente": "cli006",
+      "fechaPedido": "2026-01-15",
+      "senia": 0,
+      "estado": "Entregado",
+      "productos": [
+        {
+          "productoId": "prod001",
+          "cantidad": 1
+        },
+        {
+          "productoId": "prod002",
+          "cantidad": 1
+        }
+      ],
+      "comentarios": "Nada"
+    },
+    {
+      "id": "ped006",
+      "cliente": "cli005",
+      "fechaPedido": "2026-01-15",
+      "senia": 0,
+      "estado": "Reservado",
+      "productos": [
+        {
+          "productoId": "prod001",
+          "cantidad": 1
+        },
+        {
+          "productoId": "prod004",
+          "cantidad": 1
+        }
+      ],
+      "comentarios": ""
     }
   ],
+  "ventas": [],
   "productos": [
     {
       "id": "prod001",
-      "idtipoDeProducto": "tp001",
-      "idtalle": "t002",
-      "idcolor": "c001",
-      "idcolegio": "col001",
-      "idtipoDeTela": "tt001",
-      "cantidadEnStock": 21,
-      "precioUnitario": 4500
+      "idtipoDeProducto": "tp010",
+      "idtalle": "t001",
+      "idcolor": "c011",
+      "idcolegio": "col010",
+      "idtipoDeTela": "tt009",
+      "cantidadEnStock": 17,
+      "precioCompraUnitario": 1800,
+      "precioVentaUnitario": 2500
     },
     {
       "id": "prod002",
-      "idtipoDeProducto": "tp002",
+      "idtipoDeProducto": "tp010",
       "idtalle": "t002",
-      "idcolor": "c002",
-      "idcolegio": "col002",
-      "idtipoDeTela": "tt002",
-      "cantidadEnStock": 15,
-      "precioUnitario": 3900
+      "idcolor": "c011",
+      "idcolegio": "col010",
+      "idtipoDeTela": "tt009",
+      "cantidadEnStock": 14,
+      "precioCompraUnitario": 1800,
+      "precioVentaUnitario": 2500
     },
     {
       "id": "prod003",
-      "idtipoDeProducto": "tp003",
-      "idtalle": "t003",
-      "idcolor": "c003",
-      "idcolegio": "col001",
-      "idtipoDeTela": "tt001",
+      "idtipoDeProducto": "tp011",
+      "idtalle": "t002",
+      "idcolor": "c010",
+      "idcolegio": "col010",
+      "idtipoDeTela": "tt010",
       "cantidadEnStock": 10,
-      "precioUnitario": 5100
+      "precioCompraUnitario": 4500,
+      "precioVentaUnitario": 6500
     },
     {
       "id": "prod004",
-      "idtipoDeProducto": "tp001",
-      "idtalle": "t002",
+      "idtipoDeProducto": "tp003",
+      "idtalle": "t003",
+      "idcolor": "c010",
+      "idcolegio": "col003",
+      "idtipoDeTela": "tt011",
+      "cantidadEnStock": 7,
+      "precioCompraUnitario": 9000,
+      "precioVentaUnitario": 12500
+    },
+    {
+      "id": "prod005",
+      "idtipoDeProducto": "tp012",
+      "idtalle": "t001",
       "idcolor": "c002",
-      "idcolegio": "col001",
-      "idtipoDeTela": "tt001",
-      "cantidadEnStock": 26,
-      "precioUnitario": 1800
+      "idcolegio": "col003",
+      "idtipoDeTela": "tt010",
+      "cantidadEnStock": 12,
+      "precioCompraUnitario": 4200,
+      "precioVentaUnitario": 6000
+    },
+    {
+      "id": "prod006",
+      "idtipoDeProducto": "tp003",
+      "idtalle": "t004",
+      "idcolor": "c010",
+      "idcolegio": "col003",
+      "idtipoDeTela": "tt011",
+      "cantidadEnStock": 12,
+      "precioCompraUnitario": 12000,
+      "precioVentaUnitario": 14000
+    },
+    {
+      "id": "prod007",
+      "idtipoDeProducto": "tp001",
+      "idtalle": "t001",
+      "idcolor": "c011",
+      "idcolegio": "col010",
+      "idtipoDeTela": "tt009",
+      "cantidadEnStock": 20,
+      "precioCompraUnitario": 1800,
+      "precioVentaUnitario": 2500
     }
   ],
   "tiposDeProducto": [
@@ -112,6 +229,42 @@
     {
       "id": "tp003",
       "nombre": "Campera"
+    },
+    {
+      "id": "tp004",
+      "nombre": "Medias"
+    },
+    {
+      "id": "tp005",
+      "nombre": "Cancan"
+    },
+    {
+      "id": "tp006",
+      "nombre": "Test"
+    },
+    {
+      "id": "tp007",
+      "nombre": "Camisa"
+    },
+    {
+      "id": "tp008",
+      "nombre": "Gorra"
+    },
+    {
+      "id": "tp009",
+      "nombre": "Gorro"
+    },
+    {
+      "id": "tp010",
+      "nombre": "Remera"
+    },
+    {
+      "id": "tp011",
+      "nombre": "Pantalon"
+    },
+    {
+      "id": "tp012",
+      "nombre": "Pollera"
     }
   ],
   "talles": [
@@ -126,6 +279,22 @@
     {
       "id": "t003",
       "nombre": "L"
+    },
+    {
+      "id": "t004",
+      "nombre": "XS"
+    },
+    {
+      "id": "t005",
+      "nombre": "Test"
+    },
+    {
+      "id": "t006",
+      "nombre": "Unico"
+    },
+    {
+      "id": "t007",
+      "nombre": "XL"
     }
   ],
   "colores": [
@@ -140,6 +309,38 @@
     {
       "id": "c003",
       "nombre": "Negro"
+    },
+    {
+      "id": "c004",
+      "nombre": "Amarillo"
+    },
+    {
+      "id": "c005",
+      "nombre": "Verde"
+    },
+    {
+      "id": "c006",
+      "nombre": "Test"
+    },
+    {
+      "id": "c007",
+      "nombre": "Marron"
+    },
+    {
+      "id": "c008",
+      "nombre": "Celeste"
+    },
+    {
+      "id": "c009",
+      "nombre": "Rojo"
+    },
+    {
+      "id": "c010",
+      "nombre": "Azul"
+    },
+    {
+      "id": "c011",
+      "nombre": "Blanco"
     }
   ],
   "colegios": [
@@ -150,6 +351,38 @@
     {
       "id": "col002",
       "nombre": "Instituto San José"
+    },
+    {
+      "id": "col003",
+      "nombre": "San Alberto"
+    },
+    {
+      "id": "col004",
+      "nombre": "Trinity"
+    },
+    {
+      "id": "col005",
+      "nombre": "Test"
+    },
+    {
+      "id": "col006",
+      "nombre": "Northen"
+    },
+    {
+      "id": "col007",
+      "nombre": "Carmen"
+    },
+    {
+      "id": "col008",
+      "nombre": "SITA"
+    },
+    {
+      "id": "col009",
+      "nombre": "San Albertp"
+    },
+    {
+      "id": "col010",
+      "nombre": "San Martin"
     }
   ],
   "tiposDeTela": [
@@ -160,6 +393,53 @@
     {
       "id": "tt002",
       "nombre": "Poliéster"
+    },
+    {
+      "id": "tt003",
+      "nombre": "Pluma"
+    },
+    {
+      "id": "tt004",
+      "nombre": "Otro"
+    },
+    {
+      "id": "tt005",
+      "nombre": "Test"
+    },
+    {
+      "id": "tt006",
+      "nombre": "Indefinido"
+    },
+    {
+      "id": "tt007",
+      "nombre": "SITA"
+    },
+    {
+      "id": "tt008",
+      "nombre": "Verde"
+    },
+    {
+      "id": "tt009",
+      "nombre": "Algodon"
+    },
+    {
+      "id": "tt010",
+      "nombre": "Gabardina"
+    },
+    {
+      "id": "tt011",
+      "nombre": "Frisa"
+    }
+  ],
+  "estados": [
+    {
+      "id": "Reservado"
+    },
+    {
+      "id": "Entregado"
+    },
+    {
+      "id": "Cancelado"
     }
   ]
 }

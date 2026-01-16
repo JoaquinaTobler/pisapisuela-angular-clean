@@ -1,0 +1,147 @@
+/* ===== CONTENEDOR GENERAL ===== */
+.form-container {
+  background: linear-gradient(135deg, #f0f4ff, #ffffff);
+  min-height: 100vh;
+  padding: 40px 20px;
+  animation: fadeIn 0.6s ease;
+}
+
+/* Título */
+h2 {
+  font-weight: 800;
+  color: #444;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* ===== FILTROS ===== */
+.modern-input {
+  border-radius: 14px;
+  padding: 10px 12px;
+  border: 1px solid #dcdcdc;
+  transition: all 0.2s ease-in-out;
+  min-width: 120px;
+}
+
+.modern-input:focus {
+  border-color: #6c63ff;
+  box-shadow: 0 0 6px rgba(108, 99, 255, 0.35);
+}
+
+/* Botones de exportación */
+.btn-success, .btn-warning {
+  border-radius: 12px !important;
+  padding: 9px 20px !important;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.btn-warning.text-white:hover {
+  filter: brightness(1.1);
+}
+
+/* ===== TARJETAS GENERALES ===== */
+.form-card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  padding: 25px;
+  animation: fadeIn 0.4s ease;
+}
+
+/* ===== TARJETA: RESUMEN MENSUAL ===== */
+.form-card h5 {
+  font-size: 1.2rem;
+  color: #28a745;
+}
+
+/* Canvas del gráfico */
+canvas {
+  margin: 10px auto;
+  display: block;
+}
+
+/* ===== TARJETAS DE VENTAS ===== */
+.venta-card {
+  transition: all 0.25s ease;
+  border-radius: 20px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.venta-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+/* Encabezado verde de cada venta */
+.venta-card .venta-header {
+  background: #28a745;
+  padding: 12px 16px;
+  color: white;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* ===== MODAL DETALLE DE VENTA ===== */
+.modal-content {
+  border-radius: 20px !important;
+  padding-bottom: 10px;
+}
+
+.modal-header {
+  border-radius: 20px 20px 0 0 !important;
+  padding: 15px 20px;
+}
+
+.modal-title {
+  font-weight: 600;
+}
+
+/* Botón cerrar */
+.btn-close {
+  filter: brightness(0) invert(1);
+}
+
+/* ===== ITEM DE PRODUCTO EN DETALLE ===== */
+.cart-item-card {
+  border-radius: 12px;
+  border: 1px solid #e6e6e6;
+  transition: all 0.2s ease;
+  padding: 12px 15px;
+  background: #fafafa;
+}
+
+.cart-item-card:hover {
+  background: #f2f9ff;
+  border-color: #cce3ff;
+  transform: scale(1.01);
+}
+
+/* Total */
+.text-primary {
+  color: #6c63ff !important;
+}
+
+/* ===== ANIMACIÓN ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 576px) {
+  .modern-input {
+    width: 100% !important;
+  }
+
+  .btn-success, .btn-warning {
+    width: 100%;
+  }
+
+  .venta-card {
+    margin-bottom: 15px;
+  }
+}

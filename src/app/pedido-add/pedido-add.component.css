@@ -1,0 +1,29 @@
+.pedido-add {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.tabla-pedido {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.tabla-pedido th, .tabla-pedido td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.total {
+  text-align: right;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+.acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 1rem;
+}

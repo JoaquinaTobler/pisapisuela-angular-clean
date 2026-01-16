@@ -1,0 +1,41 @@
+<div class="pedido-add">
+  <h2>Nuevo Pedido</h2>
+
+  <div class="cliente-section">
+    <label>Cliente:</label>
+    <select [(ngModel)]="clienteSeleccionado">
+      <option value="">-- Seleccioná un cliente --</option>
+      <option *ngFor="let c of clientes" [value]="c.id">{{ c.nombre }}</option>
+    </select>
+  </div>
+
+  <h3>Productos seleccionados</h3>
+  <table class="tabla-pedido">
+    <thead>
+      <tr>
+        <th>Descripción</th>
+        <th>Cantidad</th>
+        <th>Precio Unitario</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of productosSeleccionados">
+        <td>{{ p.descripcion }}</td>
+        <td>{{ p.cantidad }}</td>
+        <td>{{ p.precioVentaUnidad | currency:'ARS':'symbol' }}</td>
+        <td>{{ p.subtotal | currency:'ARS':'symbol' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="total">
+    <strong>Total:</strong> {{ total | currency:'ARS':'symbol' }}
+  </div>
+
+  <div class="acciones">
+    <button (click)="confirmarPedido()">Confirmar Pedido</button>
+    <button (click)="irOrdenProductos()">Volver</button>
+  </div>
+</div>
+

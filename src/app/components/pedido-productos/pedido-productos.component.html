@@ -1,0 +1,231 @@
+<div class="form-container">
+  <div class="container">
+
+    <!-- Título -->
+    <div class="text-center mb-4">
+      <h2 class="fw-bold">Seleccionar Productos</h2>
+      <p class="text-muted">Filtrá y agregá productos al pedido.</p>
+    </div>
+
+    <div class="row">
+
+      <!-- COLUMNA IZQUIERDA -->
+      <div class="col-lg-8">
+
+        <!-- CARD FILTROS -->
+        <div class="form-card mb-4">
+          <h5 class="mb-3 text-center">Filtros</h5>
+
+          <div class="row g-3">
+
+            <!-- Tipo -->
+            <div class="col-md-4">
+              <label class="form-label">Tipo</label>
+              <select class="form-control modern-input"
+                      [(ngModel)]="filtros.tipo"
+                      (change)="aplicarFiltro()">
+                <option value="">Todos</option>
+                <option *ngFor="let tipo of tiposDeProductoList" [value]="tipo.id">
+                  {{ tipo.nombre }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Talle -->
+            <div class="col-md-4">
+              <label class="form-label">Talle</label>
+              <select class="form-control modern-input"
+                      [(ngModel)]="filtros.talle"
+                      (change)="aplicarFiltro()">
+                <option value="">Todos</option>
+                <option *ngFor="let talle of tallesList" [value]="talle.id">
+                  {{ talle.nombre }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Color -->
+            <div class="col-md-4">
+              <label class="form-label">Color</label>
+              <select class="form-control modern-input"
+                      [(ngModel)]="filtros.color"
+                      (change)="aplicarFiltro()">
+                <option value="">Todos</option>
+                <option *ngFor="let color of coloresList" [value]="color.id">
+                  {{ color.nombre }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Colegio -->
+            <div class="col-md-6">
+              <label class="form-label">Colegio</label>
+              <select class="form-control modern-input"
+                      [(ngModel)]="filtros.colegio"
+                      (change)="aplicarFiltro()">
+                <option value="">Todos</option>
+                <option *ngFor="let colegio of colegiosList" [value]="colegio.id">
+                  {{ colegio.nombre }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Tipo Tela -->
+            <div class="col-md-6">
+              <label class="form-label">Tipo Tela</label>
+              <select class="form-control modern-input"
+                      [(ngModel)]="filtros.tela"
+                      (change)="aplicarFiltro()">
+                <option value="">Todos</option>
+                <option *ngFor="let tela of tiposDeTelaList" [value]="tela.id">
+                  {{ tela.nombre }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="text-end mt-3">
+            <button class="btn btn-outline-secondary btn-sm px-3" (click)="limpiarFiltros()">
+              <i class="bi bi-x-circle"></i> Limpiar filtros
+            </button>
+          </div>
+        </div>
+
+        <!-- TABLA DE PRODUCTOS -->
+        <div class="form-card">
+
+          <div class="table-responsive">
+            <table class="table table-hover align-middle">
+              <thead class="modern-table-header">
+                <tr>
+                  <th>Tipo</th>
+                  <th>Talle</th>
+                  <th>Color</th>
+                  <th>Colegio</th>
+                  <th>Tela</th>
+                  <th>Stock</th>
+                  <th>Precio</th>
+                  <th style="width:110px;">Cantidad</th>
+                  <th></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let prod of productosFiltrados">
+
+                  <td>{{ prod.tipoProductoNombre }}</td>
+                  <td>{{ prod.talleNombre }}</td>
+                  <td>{{ prod.colorNombre }}</td>
+                  <td>{{ prod.colegioNombre }}</td>
+                  <td>{{ prod.tipoTelaNombre }}</td>
+                  <td>{{ prod.cantidadEnStock }}</td>
+                  <td>${{ prod.precioVentaUnitario }}</td>
+
+                  <!-- Cantidad -->
+                  <td>
+                    <input type="number"
+                           class="form-control modern-input"
+                           [(ngModel)]="cantidades[prod.id]"
+                           min="1"
+                           [max]="prod.cantidadEnStock"
+                           (blur)="validarCantidad(prod.id, prod.cantidadEnStock)"
+                           placeholder="1">
+                  </td>
+
+                  <!-- Agregar -->
+                  <td>
+                    <button class="btn btn-primary btn-sm"
+                            (click)="agregarProducto(prod)">
+                      <i class="bi bi-cart-plus"></i>
+                    </button>
+                  </td>
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div *ngIf="productosFiltrados.length === 0"
+               class="text-center text-muted py-3">
+            No hay productos para mostrar.
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMNA DERECHA - CARRITO -->
+      <div class="col-lg-4">
+        <div class="form-card sticky-top">
+
+          <h5 class="text-center mb-3">
+            <i class="bi bi-bag"></i> Carrito
+          </h5>
+
+          <!-- Carrito vacío -->
+          <div *ngIf="carrito.length === 0"
+               class="alert alert-secondary text-center">
+            <i class="bi bi-bag-dash"></i> Aún no agregaste productos.
+          </div>
+
+          <!-- LISTA DEL CARRITO -->
+          <ul class="list-group mb-3" *ngIf="carrito.length > 0">
+
+            <li class="list-group-item d-flex justify-content-between align-items-center"
+                *ngFor="let item of carrito">
+
+              <div>
+                <strong>{{ item.descripcion }}</strong><br>
+                <small class="text-muted">
+                  {{ item.tipoProductoNombre }} •
+                  {{ item.talleNombre }} •
+                  {{ item.colorNombre }}
+                </small><br>
+                <small class="text-muted">
+                  ${{ item.precioUnitario }} c/u — Subtotal:
+                  <strong>${{ item.precioUnitario * item.cantidad }}</strong>
+                </small>
+              </div>
+
+              <div class="text-end">
+
+                <!-- Cantidad -->
+                <div class="d-flex justify-content-end align-items-center mb-1">
+                  <button class="btn btn-light btn-sm me-1"
+                          (click)="disminuirCantidad(item)">
+                    <i class="bi bi-dash"></i>
+                  </button>
+
+                  <span class="mx-1 fw-bold">{{ item.cantidad }}</span>
+
+                  <button class="btn btn-light btn-sm ms-1"
+                          (click)="aumentarCantidad(item)">
+                    <i class="bi bi-plus"></i>
+                  </button>
+                </div>
+
+                <!-- Eliminar -->
+                <button class="btn btn-danger btn-sm"
+                        (click)="quitarProducto(item.productoId)">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </li>
+          </ul>
+
+          <!-- TOTAL -->
+          <div *ngIf="carrito.length > 0" class="mb-3 text-end fw-bold">
+            Total: ${{ calcularTotal() }}
+          </div>
+
+          <!-- Confirmar -->
+          <button class="btn btn-success w-100"
+                  [disabled]="carrito.length === 0"
+                  (click)="finalizarSeleccion()">
+            <i class="bi bi-check-circle"></i> Confirmar selección
+          </button>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

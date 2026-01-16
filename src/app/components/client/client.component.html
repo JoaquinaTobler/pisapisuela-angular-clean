@@ -1,64 +1,83 @@
-<form id="clienteForm" novalidate>
-  <div class="form-row">
-    <div class="form-group col-md-12">
-      <label for="inputClienteId">ID Cliente*</label>
-      <input type="text" class="form-control" id="inputClienteId" placeholder="Ej: CLI-001" required>
-      <div class="invalid-feedback">Por favor ingrese un ID válido</div>
-    </div>
-  </div>
+<div class="form-container d-flex justify-content-center align-items-center">
+  <div class="row form-card p-4 p-md-5 overflow-hidden" style="max-width: 900px; width: 100%;">
 
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputNombre">Nombre(s)*</label>
-      <input type="text" class="form-control" id="inputNombre" placeholder="Ingrese el nombre" required>
-      <div class="invalid-feedback">Este campo es obligatorio</div>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputApellido">Apellido(s)*</label>
-      <input type="text" class="form-control" id="inputApellido" placeholder="Ingrese el apellido" required>
-      <div class="invalid-feedback">Este campo es obligatorio</div>
-    </div>
-  </div>
+    <!-- FORMULARIO -->
+    <div class="col-md-7">
+      <form (ngSubmit)="onSubmit()" [formGroup]="clienteForm" id="clienteForm" novalidate>
 
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputCelular">Celular*</label>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text"><i class="fas fa-phone"></i></span>
+        <h2 class="fw-bold text-center mb-3">Cargar Cliente</h2>
+        <p class="text-muted text-center mb-4">
+          Completá los datos para registrar un cliente en el sistema.
+        </p>
+
+        <!-- ID -->
+        <div class="row g-3">
+          <div class="col-12">
+            <label class="form-label fw-semibold">ID Cliente</label>
+            <input type="text"
+                   class="form-control modern-input"
+                   formControlName="id"
+                   readonly>
+          </div>
         </div>
-        <input type="tel" class="form-control" id="inputCelular" placeholder="Ej: 11 2345-6789" required>
-      </div>
-      <div class="invalid-feedback">Ingrese un número válido</div>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputEmail">Email</label>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+
+        <!-- NOMBRE / APELLIDO -->
+        <div class="row g-3 mt-1">
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Nombre</label>
+            <input type="text"
+                   class="form-control modern-input"
+                   formControlName="nombre"
+                   placeholder="Ingrese el nombre">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Apellido</label>
+            <input type="text"
+                   class="form-control modern-input"
+                   formControlName="apellido"
+                   placeholder="Ingrese el apellido">
+          </div>
         </div>
-        <input type="email" class="form-control" id="inputEmail" placeholder="cliente@ejemplo.com">
+
+        <!-- CELULAR -->
+        <div class="row g-3 mt-1">
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Celular*</label>
+            <input type="tel"
+                   class="form-control modern-input"
+                   formControlName="celular"
+                   placeholder="Ej: 11 2345-6789">
+          </div>
+        </div>
+
+        <!-- BOTONES -->
+        <div class="text-center mt-4">
+          <button type="submit" class="btn btn-success px-4 me-2">Guardar</button>
+          <button type="button" class="btn btn-secondary px-4" (click)="cancelar()">Cancelar</button>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- PANEL LATERAL -->
+    <div class="col-md-5 d-flex flex-column justify-content-center align-items-center p-4 bg-light rounded-3 mt-4 mt-md-0">
+
+      <img src="https://cdn-icons-png.flaticon.com/512/456/456212.png"
+           width="100"
+           class="mb-3 opacity-75">
+
+      <h5 class="mb-2 text-center fw-semibold">Información del Cliente</h5>
+
+      <p class="text-muted text-center small">
+        Estos datos te van a permitir registrar pedidos y ventas asociadas a este cliente.
+      </p>
+
+      <div class="alert alert-info text-center py-2 px-3 small mt-3">
+        El ID se genera automáticamente.
       </div>
-      <div class="invalid-feedback">Ingrese un email válido</div>
-    </div>
-  </div>
 
-  <div class="form-group">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="confirmacionDatos" required>
-      <label class="form-check-label" for="confirmacionDatos">
-        Verifico que los datos son correctos
-      </label>
-      <div class="invalid-feedback">Debe confirmar los datos</div>
     </div>
-  </div>
 
-  <div class="d-flex justify-content-between mt-4">
-    <button type="reset" class="btn btn-outline-secondary">
-      <i class="fas fa-eraser mr-2"></i> Limpiar
-    </button>
-    <button type="submit" class="btn btn-primary">
-      <i class="fas fa-save mr-2"></i> Guardar Cliente
-    </button>
   </div>
-</form>
+</div>

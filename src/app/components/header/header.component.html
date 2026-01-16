@@ -1,37 +1,61 @@
-<nav class="navbar navbar-expand-lg navbar-dark custom-header">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Pisa Pisuela</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+<nav class="navbar navbar-expand-lg bg-white shadow-sm modern-navbar py-3">
+  <div class="container">
+
+    <!-- LOGO -->
+    <a class="navbar-brand fw-bold text-dark d-flex align-items-center" [routerLink]="['/']">
+      <i class="bi bi-shop fs-4 me-2 brand-icon"></i>
+      Pisa Pisuela
+    </a>
+
+    <!-- Toggle -->
+    <button class="navbar-toggler border-0 shadow-sm rounded-3" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/home">Inicio
-          </a>
-        </li>
+    <!-- MENU -->
+    <div class="collapse navbar-collapse justify-content-end" id="navbarMenu">
+
+      <ul class="navbar-nav align-items-center">
+
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-            Menu 
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" [routerLink]="['/products/home']"routerLinkActive="active">Productos</a></li>
-            <li><a class="dropdown-item" [routerLink]="['/orders/add']"routerLinkActive="active">Pedidos</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" [routerLink]="['/sales/add']"routerLinkActive="active">Ventas</a></li>
-            <li><a class="dropdown-item" [routerLink]="['/clients/add']"routerLinkActive="active">Clientes</a></li>
+          <button class="btn nav-link dropdown-toggle text-dark fw-semibold modern-nav-btn px-3 py-2" id="menuDropdown"
+            data-bs-toggle="dropdown">
+            <i class="bi bi-list me-1"></i> Menú
+          </button>
+
+          <ul class="dropdown-menu dropdown-menu-end shadow rounded-3 modern-dropdown">
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center modern-dropdown-item" [routerLink]="['/products/view']">
+                <i class="bi bi-box fs-5 me-2 text-primary"></i> Productos
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center modern-dropdown-item" [routerLink]="['/clients/view']">
+                <i class="bi bi-person fs-5 me-2 text-success"></i> Clientes
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center modern-dropdown-item" [routerLink]="['/orders/view']">
+                <i class="bi bi-cart-check fs-5 me-2 text-warning"></i> Pedidos
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center modern-dropdown-item" [routerLink]="['/ventas/home']">
+                <i class="bi bi-cash-coin fs-5 me-2 text-danger"></i> Ventas
+              </a>
+            </li>
+
           </ul>
+
         </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Exportar a Excel
-          </a>
-        </li>
+
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+
     </div>
   </div>
 </nav>

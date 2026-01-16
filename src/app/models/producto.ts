@@ -6,5 +6,7 @@ export interface Producto {
     idcolegio: string;
     idtipoDeTela: string;
     cantidadEnStock: number;
-    precioUnitario: number;
+    precioCompraUnitario: number;
+    precioVentaUnitario: number;
+    //precioUnitario: number;
 }
