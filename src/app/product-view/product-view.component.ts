@@ -16,21 +16,21 @@ export class ProductViewComponent implements OnInit {
    productos: any[] = [];
   productosFiltrados: any[] = [];
 
-  // Objetos para obtener nombre por id
+  productosSeleccionados: Set<string> = new Set();
+  seleccionarTodos = false;
+
   tiposDeProducto: any = {};
   talles: any = {};
   colores: any = {};
   colegios: any = {};
   tiposDeTela: any = {};
 
-  // Listas originales para los dropdowns
   tiposDeProductoList: any[] = [];
   tallesList: any[] = [];
   coloresList: any[] = [];
   colegiosList: any[] = [];
   tiposDeTelaList: any[] = [];
 
-  // Filtros seleccionados
   filtros = {
     tipo: '',
     talle: '',
@@ -39,7 +39,8 @@ export class ProductViewComponent implements OnInit {
     tela: ''
   };
 
-  constructor(private productService: ProductosService,
+  constructor(
+    private productService: ProductosService,
     private router: Router
   ) {}
 
@@ -55,14 +56,13 @@ export class ProductViewComponent implements OnInit {
       firstValueFrom(this.productService.getColegios()),
       firstValueFrom(this.productService.getTiposDeTela())
     ]).then(([tipos, talles, colores, colegios, telas]) => {
-      // Guardamos las listas completas para los dropdowns
+
       this.tiposDeProductoList = tipos;
       this.tallesList = talles;
       this.coloresList = colores;
       this.colegiosList = colegios;
       this.tiposDeTelaList = telas;
 
-      // Convertimos a hash para mostrar nombres en la tabla
       this.tiposDeProducto = this.convertirArrayAHash(tipos);
       this.talles = this.convertirArrayAHash(talles);
       this.colores = this.convertirArrayAHash(colores);
@@ -79,7 +79,7 @@ export class ProductViewComponent implements OnInit {
           tipoTela: this.tiposDeTela[p.idtipoDeTela]
         }));
 
-        this.aplicarFiltro(); // Para inicializar productos filtrados
+        this.aplicarFiltro();
       });
     });
   }
@@ -99,6 +99,9 @@ export class ProductViewComponent implements OnInit {
       (!this.filtros.colegio || p.idcolegio === this.filtros.colegio) &&
       (!this.filtros.tela || p.idtipoDeTela === this.filtros.tela)
     );
+
+    this.productosSeleccionados.clear();
+    this.seleccionarTodos = false;
   }
 
   limpiarFiltros(): void {
@@ -106,22 +109,50 @@ export class ProductViewComponent implements OnInit {
     this.aplicarFiltro();
   }
 
-  editarProducto(id: string): void {
-    this.productService.getProductById(id).subscribe(producto => {
-      if (producto) {
-        console.log('Producto a editar:', producto);
-        this.router.navigate(['/product/edit', id]);
-      } else {
-        console.warn('Producto no encontrado');
-      }
+  toggleProducto(id: string): void {
+    if (this.productosSeleccionados.has(id)) {
+      this.productosSeleccionados.delete(id);
+    } else {
+      this.productosSeleccionados.add(id);
+    }
+  }
+
+  toggleSeleccionarTodos(): void {
+    this.productosSeleccionados.clear();
+
+    if (this.seleccionarTodos) {
+      this.productosFiltrados.forEach(p =>
+        this.productosSeleccionados.add(p.id)
+      );
+    }
+  }
+
+  eliminarSeleccionados(): void {
+    if (!confirm(`¿Eliminar ${this.productosSeleccionados.size} productos?`)) {
+      return;
+    }
+
+    const ids = Array.from(this.productosSeleccionados);
+
+    ids.forEach(id => {
+      this.productService.deleteProduct(id).subscribe();
     });
+
+    this.productos = this.productos.filter(p => !this.productosSeleccionados.has(p.id));
+    this.productosSeleccionados.clear();
+    this.seleccionarTodos = false;
+    this.aplicarFiltro();
+  }
+
+  editarProducto(id: string): void {
+    this.router.navigate(['/product/edit', id]);
   }
 
   eliminarProducto(id: string): void {
-    if (confirm('¿Estás seguro que querés eliminar este producto?')) {
+    if (confirm('¿Eliminar este producto?')) {
       this.productService.deleteProduct(id).subscribe(() => {
         this.productos = this.productos.filter(p => p.id !== id);
-        this.aplicarFiltro(); // Actualizar la tabla filtrada
+        this.aplicarFiltro();
       });
     }
   }
